@@ -1,7 +1,7 @@
 <?php
 /**
  * Index - Entry Point
- * Instituto: Universidad Tecnologica de Panama
+ * Instituto: UTP
  * Estudiante: Cristopher Hernandez
  * Fecha: 26/04/2026
  */

@@ -1,7 +1,7 @@
 # Examen Parcial - PDO con Namespaces, Try/Catch y Autoload
 
 ## Instituto
-Universidad Tecnologica de Panama
+UTP
 
 ## Estudiante
 Cristopher Hernandez
