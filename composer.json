@@ -1,0 +1,13 @@
+{
+    "name": "estudiante/examen-parcial",
+    "description": "Examen Parcial - PDO con Namespaces",
+    "type": "project",
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

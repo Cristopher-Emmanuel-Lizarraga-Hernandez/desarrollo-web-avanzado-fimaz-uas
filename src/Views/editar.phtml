@@ -1,0 +1,57 @@
+<?php
+/**
+ * View - Editar Producto
+ * Instituto: Universidad Tecnologica de Panama
+ * Estudiante: Cristopher Hernandez
+ * Fecha: 26/04/2026
+ */
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto - PDO</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 5px; }
+        h1 { color: #333; margin-bottom: 20px; }
+        h2 { color: #666; margin-bottom: 15px; }
+        .student-info { background: #007bff; color: white; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 3px; }
+        button { background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; margin-right: 10px; }
+        button:hover { background: #218838; }
+        .btn-cancel { background: #6c757d; }
+        a { text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="student-info">
+            <strong>Estudiante:</strong> Cristopher Hernandez | 
+            <strong>Instituto:</strong> Universidad Tecnologica de Panama | 
+            <strong>Fecha:</strong> <?php echo date('d/m/Y H:i:s'); ?>
+        </div>
+        
+        <h1>Editar Producto</h1>
+        
+        <form method="POST" action="index.php?action=update&id=<?php echo $producto['id']; ?>">
+            <h2>Nombre:</h2>
+            <input type="text" name="nombre" value="<?php echo htmlspecialchars($producto['nombre']); ?>" required>
+            
+            <h2>Descripción:</h2>
+            <input type="text" name="descripcion" value="<?php echo htmlspecialchars($producto['descripcion']); ?>">
+            
+            <h2>Precio:</h2>
+            <input type="number" name="precio" value="<?php echo $producto['precio']; ?>" step="0.01" required>
+            
+            <h2>Cantidad:</h2>
+            <input type="number" name="cantidad" value="<?php echo $producto['cantidad']; ?>">
+            
+            <button type="submit">Actualizar</button>
+            <a href="index.php"><button type="button" class="btn-cancel">Cancelar</button></a>
+        </form>
+    </div>
+</body>
+</html>

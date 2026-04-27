@@ -1,0 +1,101 @@
+<?php
+/**
+ * View - Producto List
+ * Instituto: Universidad Tecnologica de Panama
+ * Estudiante: Cristopher Hernandez
+ * Fecha: 26/04/2026
+ */
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Parcial - PDO</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { color: #333; margin-bottom: 20px; text-align: center; }
+        .student-info { background: #007bff; color: white; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center; }
+        .form-box { background: white; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
+        input, textarea { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 3px; }
+        button { background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #218838; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #007bff; color: white; }
+        tr:hover { background: #f8f9fa; }
+        .btn-edit { background: #ffc107; color: #000; }
+        .btn-delete { background: #dc3545; color: white; margin-left: 5px; }
+        .message { padding: 10px; margin-bottom: 15px; border-radius: 3px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .date显示 { color: #666; font-size: 12px; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="student-info">
+            <strong>Estudiante:</strong> Cristopher Hernandez | 
+            <strong>Instituto:</strong> Universidad Tecnologica de Panama | 
+            <strong>Fecha:</strong> <?php echo date('d/m/Y H:i:s'); ?>
+        </div>
+        
+        <h1>Gestión de Productos - PDO</h1>
+        
+        <?php if (isset($message)): ?>
+            <div class="message <?php echo $type; ?>"><?php echo $message; ?></div>
+        <?php endif; ?>
+        
+        <div class="form-box">
+            <h2>Agregar Producto</h2>
+            <form method="POST" action="index.php?action=create">
+                <input type="text" name="nombre" placeholder="Nombre del producto" required>
+                <input type="text" name="descripcion" placeholder="Descripción">
+                <input type="number" name="precio" placeholder="Precio" step="0.01" required>
+                <input type="number" name="cantidad" placeholder="Cantidad" value="0">
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($productos as $producto): ?>
+                <tr>
+                    <td><?php echo $producto['id']; ?></td>
+                    <td><?php echo htmlspecialchars($producto['nombre']); ?></td>
+                    <td><?php echo htmlspecialchars($producto['descripcion']); ?></td>
+                    <td>$<?php echo number_format($producto['precio'], 2); ?></td>
+                    <td><?php echo $producto['cantidad']; ?></td>
+                    <td><?php echo $producto['fecha_creacion']; ?></td>
+                    <td>
+                        <a href="index.php?action=edit&id=<?php echo $producto['id']; ?>">
+                            <button class="btn-edit">Editar</button>
+                        </a>
+                        <a href="index.php?action=delete&id=<?php echo $producto['id']; ?>">
+                            <button class="btn-delete" onclick="return confirm('¿Eliminar?')">Eliminar</button>
+                        </a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        
+        <div class="date显示">
+            Sistema desarrollado con PDO, Namespaces, Try/Catch y Autoload
+        </div>
+    </div>
+</body>
+</html>
