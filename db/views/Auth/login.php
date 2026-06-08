@@ -14,29 +14,24 @@
 
                 <form action="index.php?route=auth/login" method="POST">
 
-                    <div class="mb-3">
-                        <label class="form-label">Usuario</label>
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
-                        <input type="text"
-                               name="username"
-                               class="form-control"
-                               required>
-                    </div>
+    <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Contraseña</label>
+    <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
 
-                        <input type="password"
-                               name="password"
-                               class="form-control"
-                               required>
-                    </div>
+    <button type="submit" class="btn btn-primary w-100">
+        Ingresar
+    </button>
 
-                    <button type="submit" class="btn btn-primary w-100">
-                        Ingresar
-                    </button>
-
-                </form>
+</form>
+                
 
             </div>
 

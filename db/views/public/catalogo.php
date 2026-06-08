@@ -25,13 +25,18 @@
         <?php foreach ($productos as $producto): ?>
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= htmlspecialchars($producto['nombre']); ?></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">SKU: <?= htmlspecialchars($producto['sku']); ?></h6>
-                        <p class="card-text"><?= htmlspecialchars($producto['descripcion']); ?></p>
-                        <p><strong>Precio:</strong> $<?= number_format((float)$producto['precio_venta'], 2); ?></p>
-                        <p><strong>Existencia:</strong> <?= (int)$producto['existencia']; ?></p>
-                    </div>
+                    <?php if (!empty($producto['imagen'])): ?>
+    <img src="uploads/productos/<?= htmlspecialchars($producto['imagen']); ?>"
+         class="card-img-top" style="height: 180px; object-fit: cover;">
+<?php endif; ?>
+
+<div class="card-body">
+    <h5 class="card-title"><?= htmlspecialchars($producto['nombre']); ?></h5>
+    <h6 class="card-subtitle mb-2 text-muted">SKU: <?= htmlspecialchars($producto['sku']); ?></h6>
+    <p class="card-text"><?= htmlspecialchars($producto['descripcion']); ?></p>
+    <p><strong>Precio:</strong> $<?= number_format((float)$producto['precio_venta'], 2); ?></p>
+    <p><strong>Existencia:</strong> <?= (int)$producto['existencia']; ?></p>
+</div>
                 </div>
             </div>
         <?php endforeach; ?>

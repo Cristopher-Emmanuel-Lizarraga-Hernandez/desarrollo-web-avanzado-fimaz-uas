@@ -2,7 +2,9 @@
 
 <h2>Registrar producto</h2>
 
-<form action="index.php?route=productos/store" method="POST">
+<form action="index.php?route=productos/store" method="POST" enctype="multipart/form-data">
+
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
     <div class="mb-3">
         <label class="form-label">SKU</label>
@@ -18,20 +20,25 @@
         <label class="form-label">Descripción</label>
         <textarea name="descripcion" class="form-control" required></textarea>
     </div>
+
     <div class="mb-3">
         <label class="form-label">Precio compra</label>
-        <input type="text" name="precio_compra" class="form-control" required>
+        <input type="number" step="0.01" name="precio_compra" class="form-control" required>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Precio venta</label>
-        <input type="text" name="precio_compra" class="form-control" required>
+        <input type="number" step="0.01" name="precio_venta" class="form-control" required>
     </div>
-
 
     <div class="mb-3">
         <label class="form-label">Existencia</label>
         <input type="number" name="existencia" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Imagen del producto</label>
+        <input type="file" name="imagen" class="form-control" accept="image/*">
     </div>
 
     <button type="submit" class="btn btn-success">Guardar</button>

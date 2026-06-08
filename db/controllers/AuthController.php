@@ -44,6 +44,12 @@ class AuthController
     public function login(): void
     {
         $this->iniciarSesion();
+         if (!isset($_POST['csrf_token']) || 
+        $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        $_SESSION['error'] = 'Token de seguridad inválido.';
+        header('Location: index.php?route=login');
+        exit;
+    }
 
         $username = trim($_POST['username'] ?? '');
         $password = trim($_POST['password'] ?? '');

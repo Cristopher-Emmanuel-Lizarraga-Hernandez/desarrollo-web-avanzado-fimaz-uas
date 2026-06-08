@@ -1,4 +1,7 @@
-<?php if (session_status() === PHP_SESSION_NONE) session_start(); ?>
+<?php if (session_status() === PHP_SESSION_NONE) session_start();
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+} ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -53,7 +56,7 @@
 
         <div class="alert alert-danger">
 
-            <?= htmlspecialchars($_SESSION['errro']); ?>
+            <?= htmlspecialchars($_SESSION['error']); ?>
 
             <?php unset($_SESSION['error']); ?>
 
